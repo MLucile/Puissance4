@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 
 /**
  * Created by MLucile on 03/02/2016.
@@ -22,7 +23,7 @@ public class Vue extends JFrame
 
     //éléments
     private ImageIcon fond;
-    private JLabel[][] tabFond;
+    private JButton[][] tabFond;
     private JPanel grille;
 
 
@@ -46,12 +47,12 @@ public class Vue extends JFrame
     public void initAttributs()
     {
         fond = new ImageIcon(getClass().getResource("Images/jetonNeutre.png"));
-        tabFond = new JLabel[6][7];
+        tabFond = new JButton[6][7];
         for(i=0; i<tabFond.length; i++)
         {
             for(j=0; j<tabFond[i].length; j++)
             {
-                tabFond[i][j] = new JLabel(fond);
+                tabFond[i][j] = new JButton(fond);
             }
         }
 
@@ -102,8 +103,14 @@ public class Vue extends JFrame
         about.addActionListener(listener);
     }
 
-    public void setInputControler(KeyListener keyp)
+    public void setMouseControler(MouseListener listener)
     {
-        addKeyListener(keyp);
+        for(i=0; i<tabFond.length; i++)
+        {
+            for(j=0; j<tabFond[i].length; j++)
+            {
+                tabFond[i][j].addMouseListener(listener);
+            }
+        }
     }
 }
