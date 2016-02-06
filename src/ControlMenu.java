@@ -17,8 +17,11 @@ public class ControlMenu extends Control implements ActionListener
         if(e.getSource() == vue.getFichierNouvellePartie())
         {
             vue.dispose();
+            vue.initAttributs();
             vue.repaint();
             vue.creerWidget();
+            vue.setMouseControler(this);
+            vue.setMenuControler(this);
             vue.setVisible(true);
         }
         //quitter

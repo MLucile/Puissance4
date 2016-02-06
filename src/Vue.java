@@ -26,6 +26,14 @@ public class Vue extends JFrame
     private JButton[][] tabFond;
     private JPanel grille;
 
+    //Cartes qui vont servire au jeu
+    private ImageIcon[] cartes =
+            {
+                    new ImageIcon(getClass().getResource("Images/jetonNeutre.png")),
+                    new ImageIcon(getClass().getResource("Images/jetonJaune.png")),
+                    new ImageIcon(getClass().getResource("Images/jetonOrange.png"))
+            };
+
 
     /**
      * Constructeur de la vue
@@ -46,13 +54,12 @@ public class Vue extends JFrame
      */
     public void initAttributs()
     {
-        fond = new ImageIcon(getClass().getResource("Images/jetonNeutre.png"));
         tabFond = new JButton[6][7];
         for(i=0; i<tabFond.length; i++)
         {
             for(j=0; j<tabFond[i].length; j++)
             {
-                tabFond[i][j] = new JButton(fond);
+                tabFond[i][j] = new JButton(cartes[0]);
             }
         }
 
@@ -95,6 +102,8 @@ public class Vue extends JFrame
     {
         return about;
     }
+    public JButton[][] getTabFond(){ return tabFond; }
+    public ImageIcon[] getCartes(){ return cartes; }
 
     public void setMenuControler(ActionListener listener)
     {
@@ -103,13 +112,15 @@ public class Vue extends JFrame
         about.addActionListener(listener);
     }
 
-    public void setMouseControler(MouseListener listener)
+    public void setTabFond(JButton[][] tabFond){ this.tabFond = tabFond; }
+
+    public void setMouseControler(ActionListener listener)
     {
         for(i=0; i<tabFond.length; i++)
         {
             for(j=0; j<tabFond[i].length; j++)
             {
-                tabFond[i][j].addMouseListener(listener);
+                tabFond[i][j].addActionListener(listener);
             }
         }
     }
