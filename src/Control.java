@@ -10,5 +10,6 @@ public class Control
     {
         this.model = model;
         this.vue = vue;
+
     }
 }
